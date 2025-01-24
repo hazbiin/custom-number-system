@@ -12,18 +12,27 @@ getSequenceBtn.addEventListener("click", () => {
 
     if(symbolCount <= 0){
         window.alert('Invalid Input, we need atleast 1 symbol for counting');
+        return;
+    }
+
+    if(symbolCount === 1){
+        window.alert('use atleast 2 symbols for efficient counting!');
+        return;
     }
 
     if(symbolCount > totalSymbols.length){
-        window.alert('this is a 36-base number system, enter values within in that range');
+        window.alert('the range of this custom base system is between 1 and 36 so, enter values within in that range!');
+        return;
     }
 
     if(count <= 0){
         window.alert("Invalid input! counting starts from 1");
+        return;
     }
 
     let selectedSymbolArr = getSelectedSymbols(symbolCount);
     sequencesContainer.innerHTML = "";
+    console.log("selectecd symbole", selectedSymbolArr)
     generateSequene(count, selectedSymbolArr);
 
     // getting the display number container
@@ -63,7 +72,9 @@ function getNumber(num, selectedSymbols, customBaseNumberContainer){
     const generatedNumber = document.createElement('div');
     generatedNumber.classList.add('symbol');
 
+    // generatedNumber.innerHTML = customBaseSystem(num - 1 , selectedSymbols);
     generatedNumber.innerHTML = customBaseSystem(num, selectedSymbols);
+
     customBaseNumberContainer.appendChild(generatedNumber);
 }
 
@@ -71,6 +82,7 @@ function customBaseSystem(num, symbols){
     if(num === 0){
         return "0";
     }
+
     let base = symbols.length;
     let customSymbol = "";
 
@@ -82,3 +94,13 @@ function customBaseSystem(num, symbols){
     }
     return customSymbol;
 }
+
+
+// to do soon
+// show different views - for both the scenarios - kind of 2 projects in one 
+
+// addititonal add ons to this project
+// this is the core concept ---- each power of the base corresponds to a new digit being added to the left,
+// try to right another program which i tried earlier on your free time with above core concept
+// coutning with one symbols is not working , i can only count till 1 - check why it is ?
+// implementing counting with 0 also
